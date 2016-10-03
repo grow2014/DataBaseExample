@@ -6,4 +6,21 @@ package pro.kinect.dbe.main.Models;
  */
 
 public class UserModel {
+    private String name;
+    private String email;
+
+    public UserModel(String email) {
+        if (email.contains("@")) this.name = email.split("@")[0];
+        else this.name = email;
+
+        this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 }

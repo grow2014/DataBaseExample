@@ -7,8 +7,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import pro.kinect.dbe.R;
+import pro.kinect.dbe.main.Models.UserModel;
 import pro.kinect.dbe.main.Views.SignInActivity;
 
 /**
@@ -72,7 +76,7 @@ public class SignInController {
                             sendRegistration(email, password);
                         } else {
                             //completeSignIn;
-                            if (activity != null) activity.goToChatActivity();
+                            successLogIn();
                         }
                     }
                 });
@@ -92,10 +96,21 @@ public class SignInController {
                             }
                         } else {
                             //completeRegistration;
-                            if (activity != null) activity.goToChatActivity();
+                            successLogIn();
                         }
                     }
                 });
     }
     ///// --------  THE BLOCK OF SIGN IN WITH EMAIL FINISHED ---------- //////
+
+
+    private void successLogIn() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        UserModel userModel = new UserModel(user.getEmail());
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child("users_models").child(user.getUid()).setValue(userModel);
+
+        if (activity != null) activity.goToChatActivity();
+    }
 }
