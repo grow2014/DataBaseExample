@@ -1,4 +1,4 @@
-package pro.kinect.dbe;
+package pro.kinect.dbe.google_example.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,11 +17,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import pro.kinect.dbe.models.User;
 
-public class SignInActivity extends BaseActivity implements View.OnClickListener {
+import pro.kinect.dbe.R;
+import pro.kinect.dbe.google_example.fragment.models.GoogleExample_User;
 
-    private static final String TAG = "SignInActivity";
+public class GoogleExample_SignInActivity extends GoogleExample_BaseActivity implements View.OnClickListener {
+
+    private static final String TAG = "GoogleExample";
 
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
@@ -34,7 +36,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
+        setContentView(R.layout.google_example_activity_sign_in);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
@@ -80,7 +82,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                         if (task.isSuccessful()) {
                             onAuthSuccess(task.getResult().getUser());
                         } else {
-                            Toast.makeText(SignInActivity.this, "Sign In Failed",
+                            Toast.makeText(GoogleExample_SignInActivity.this, "Sign In Failed",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -107,7 +109,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                         if (task.isSuccessful()) {
                             onAuthSuccess(task.getResult().getUser());
                         } else {
-                            Toast.makeText(SignInActivity.this, "Sign Up Failed",
+                            Toast.makeText(GoogleExample_SignInActivity.this, "Sign Up Failed",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -120,8 +122,8 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         // Write new user
         writeNewUser(user.getUid(), username, user.getEmail());
 
-        // Go to MainActivity
-        startActivity(new Intent(SignInActivity.this, MainActivity.class));
+        // Go to GoogleExample_MainActivity
+        startActivity(new Intent(GoogleExample_SignInActivity.this, GoogleExample_MainActivity.class));
         finish();
     }
 
@@ -154,9 +156,9 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
 
     // [START basic_write]
     private void writeNewUser(String userId, String name, String email) {
-        User user = new User(name, email);
+        GoogleExample_User googleExampleUser = new GoogleExample_User(name, email);
 
-        mDatabase.child("users").child(userId).setValue(user);
+        mDatabase.child("users").child(userId).setValue(googleExampleUser);
     }
     // [END basic_write]
 

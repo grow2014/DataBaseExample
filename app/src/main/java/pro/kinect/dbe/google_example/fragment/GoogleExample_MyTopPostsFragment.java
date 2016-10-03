@@ -1,11 +1,11 @@
-package pro.kinect.dbe.fragment;
+package pro.kinect.dbe.google_example.fragment;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 
-public class MyTopPostsFragment extends PostListFragment {
+public class GoogleExample_MyTopPostsFragment extends GoogleExample_PostListFragment {
 
-    public MyTopPostsFragment() {}
+    public GoogleExample_MyTopPostsFragment() {}
 
     @Override
     public Query getQuery(DatabaseReference databaseReference) {

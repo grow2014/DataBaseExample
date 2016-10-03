@@ -1,4 +1,4 @@
-package pro.kinect.dbe;
+package pro.kinect.dbe.google_example.fragment;
 
 import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 
-public class BaseActivity extends AppCompatActivity {
+public class GoogleExample_BaseActivity extends AppCompatActivity {
 
     private ProgressDialog mProgressDialog;
 

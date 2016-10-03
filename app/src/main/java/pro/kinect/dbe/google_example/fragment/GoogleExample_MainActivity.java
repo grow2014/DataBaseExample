@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package pro.kinect.dbe;
+package pro.kinect.dbe.google_example.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,13 +27,12 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
-import pro.kinect.dbe.fragment.MyPostsFragment;
-import pro.kinect.dbe.fragment.MyTopPostsFragment;
-import pro.kinect.dbe.fragment.RecentPostsFragment;
 
-public class  MainActivity extends BaseActivity {
+import pro.kinect.dbe.R;
 
-    private static final String TAG = "MainActivity";
+public class GoogleExample_MainActivity extends GoogleExample_BaseActivity {
+
+    private static final String TAG = "GoogleExample_MainActivity";
 
     private FragmentPagerAdapter mPagerAdapter;
     private ViewPager mViewPager;
@@ -41,14 +40,14 @@ public class  MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.google_example_activity_main);
 
         // Create the adapter that will return a fragment for each section
         mPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             private final Fragment[] mFragments = new Fragment[] {
-                    new RecentPostsFragment(),
-                    new MyPostsFragment(),
-                    new MyTopPostsFragment(),
+                    new GoogleExample_RecentPostsFragment(),
+                    new GoogleExample_MyPostsFragment(),
+                    new GoogleExample_MyTopPostsFragment(),
             };
             private final String[] mFragmentNames = new String[] {
                     getString(R.string.heading_recent),
@@ -74,11 +73,11 @@ public class  MainActivity extends BaseActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        // Button launches NewPostActivity
+        // Button launches GoogleExample_NewPostActivity
         findViewById(R.id.fab_new_post).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, NewPostActivity.class));
+                startActivity(new Intent(GoogleExample_MainActivity.this, GoogleExample_NewPostActivity.class));
             }
         });
     }
@@ -94,7 +93,7 @@ public class  MainActivity extends BaseActivity {
         int i = item.getItemId();
         if (i == R.id.action_logout) {
             FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(this, SignInActivity.class));
+            startActivity(new Intent(this, GoogleExample_SignInActivity.class));
             finish();
             return true;
         } else {

@@ -11,14 +11,14 @@
 
     <include
         android:id="@+id/post_author_layout"
-        layout="@layout/include_post_author"
+        layout="@layout/google_example_include_post_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true" />
 
     <include
         android:id="@+id/post_text_layout"
-        layout="@layout/include_post_text"
+        layout="@layout/google_example_include_post_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -41,7 +41,7 @@
             android:layout_weight="0.8"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:hint="Write a comment..."/>
+            android:hint="Write a googleExampleComment..."/>
 
         <Button
             android:id="@+id/button_post_comment"
@@ -58,6 +58,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/comment_form"
-        tools:listitem="@layout/item_comment" />
+        tools:listitem="@layout/google_example_item_comment" />
 
 </RelativeLayout>

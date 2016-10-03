@@ -1,4 +1,4 @@
-package pro.kinect.dbe;
+package pro.kinect.dbe.google_example.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -23,13 +23,14 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import pro.kinect.dbe.models.Comment;
-import pro.kinect.dbe.models.Post;
-import pro.kinect.dbe.models.User;
+import pro.kinect.dbe.R;
+import pro.kinect.dbe.google_example.fragment.models.GoogleExample_Comment;
+import pro.kinect.dbe.google_example.fragment.models.GoogleExample_Post;
+import pro.kinect.dbe.google_example.fragment.models.GoogleExample_User;
 
-public class PostDetailActivity extends BaseActivity implements View.OnClickListener {
+public class GoogleExample_PostDetailActivity extends GoogleExample_BaseActivity implements View.OnClickListener {
 
-    private static final String TAG = "PostDetailActivity";
+    private static final String TAG = "GoogleExample_PostDetailActivity";
 
     public static final String EXTRA_POST_KEY = "post_key";
 
@@ -49,7 +50,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_post_detail);
+        setContentView(R.layout.google_example_activity_post_detail);
 
         // Get post key from intent
         mPostKey = getIntent().getStringExtra(EXTRA_POST_KEY);
@@ -85,21 +86,21 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // Get Post object and use the values to update the UI
-                Post post = dataSnapshot.getValue(Post.class);
+                // Get GoogleExample_Post object and use the values to update the UI
+                GoogleExample_Post googleExamplePost = dataSnapshot.getValue(GoogleExample_Post.class);
                 // [START_EXCLUDE]
-                mAuthorView.setText(post.author);
-                mTitleView.setText(post.title);
-                mBodyView.setText(post.body);
+                mAuthorView.setText(googleExamplePost.author);
+                mTitleView.setText(googleExamplePost.title);
+                mBodyView.setText(googleExamplePost.body);
                 // [END_EXCLUDE]
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
+                // Getting GoogleExample_Post failed, log a message
                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
                 // [START_EXCLUDE]
-                Toast.makeText(PostDetailActivity.this, "Failed to load post.",
+                Toast.makeText(GoogleExample_PostDetailActivity.this, "Failed to load post.",
                         Toast.LENGTH_SHORT).show();
                 // [END_EXCLUDE]
             }
@@ -142,16 +143,16 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        // Get user information
-                        User user = dataSnapshot.getValue(User.class);
-                        String authorName = user.username;
+                        // Get googleExampleUser information
+                        GoogleExample_User googleExampleUser = dataSnapshot.getValue(GoogleExample_User.class);
+                        String authorName = googleExampleUser.username;
 
-                        // Create new comment object
+                        // Create new googleExampleComment object
                         String commentText = mCommentField.getText().toString();
-                        Comment comment = new Comment(uid, authorName, commentText);
+                        GoogleExample_Comment googleExampleComment = new GoogleExample_Comment(uid, authorName, commentText);
 
-                        // Push the comment, it will appear in the list
-                        mCommentsReference.push().setValue(comment);
+                        // Push the googleExampleComment, it will appear in the list
+                        mCommentsReference.push().setValue(googleExampleComment);
 
                         // Clear the field
                         mCommentField.setText(null);
@@ -184,7 +185,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         private ChildEventListener mChildEventListener;
 
         private List<String> mCommentIds = new ArrayList<>();
-        private List<Comment> mComments = new ArrayList<>();
+        private List<GoogleExample_Comment> mGoogleExampleComments = new ArrayList<>();
 
         public CommentAdapter(final Context context, DatabaseReference ref) {
             mContext = context;
@@ -197,14 +198,14 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                 public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
                     Log.d(TAG, "onChildAdded:" + dataSnapshot.getKey());
 
-                    // A new comment has been added, add it to the displayed list
-                    Comment comment = dataSnapshot.getValue(Comment.class);
+                    // A new googleExampleComment has been added, add it to the displayed list
+                    GoogleExample_Comment googleExampleComment = dataSnapshot.getValue(GoogleExample_Comment.class);
 
                     // [START_EXCLUDE]
                     // Update RecyclerView
                     mCommentIds.add(dataSnapshot.getKey());
-                    mComments.add(comment);
-                    notifyItemInserted(mComments.size() - 1);
+                    mGoogleExampleComments.add(googleExampleComment);
+                    notifyItemInserted(mGoogleExampleComments.size() - 1);
                     // [END_EXCLUDE]
                 }
 
@@ -214,14 +215,14 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
                     // A comment has changed, use the key to determine if we are displaying this
                     // comment and if so displayed the changed comment.
-                    Comment newComment = dataSnapshot.getValue(Comment.class);
+                    GoogleExample_Comment newGoogleExampleComment = dataSnapshot.getValue(GoogleExample_Comment.class);
                     String commentKey = dataSnapshot.getKey();
 
                     // [START_EXCLUDE]
                     int commentIndex = mCommentIds.indexOf(commentKey);
                     if (commentIndex > -1) {
                         // Replace with the new data
-                        mComments.set(commentIndex, newComment);
+                        mGoogleExampleComments.set(commentIndex, newGoogleExampleComment);
 
                         // Update the RecyclerView
                         notifyItemChanged(commentIndex);
@@ -244,7 +245,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                     if (commentIndex > -1) {
                         // Remove data from the list
                         mCommentIds.remove(commentIndex);
-                        mComments.remove(commentIndex);
+                        mGoogleExampleComments.remove(commentIndex);
 
                         // Update the RecyclerView
                         notifyItemRemoved(commentIndex);
@@ -260,7 +261,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
                     // A comment has changed position, use the key to determine if we are
                     // displaying this comment and if so move it.
-                    Comment movedComment = dataSnapshot.getValue(Comment.class);
+                    GoogleExample_Comment movedGoogleExampleComment = dataSnapshot.getValue(GoogleExample_Comment.class);
                     String commentKey = dataSnapshot.getKey();
 
                     // ...
@@ -283,20 +284,20 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         @Override
         public CommentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(mContext);
-            View view = inflater.inflate(R.layout.item_comment, parent, false);
+            View view = inflater.inflate(R.layout.google_example_item_comment, parent, false);
             return new CommentViewHolder(view);
         }
 
         @Override
         public void onBindViewHolder(CommentViewHolder holder, int position) {
-            Comment comment = mComments.get(position);
-            holder.authorView.setText(comment.author);
-            holder.bodyView.setText(comment.text);
+            GoogleExample_Comment googleExampleComment = mGoogleExampleComments.get(position);
+            holder.authorView.setText(googleExampleComment.author);
+            holder.bodyView.setText(googleExampleComment.text);
         }
 
         @Override
         public int getItemCount() {
-            return mComments.size();
+            return mGoogleExampleComments.size();
         }
 
         public void cleanupListener() {

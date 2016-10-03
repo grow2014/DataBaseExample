@@ -1,4 +1,4 @@
-package pro.kinect.dbe.fragment;
+package pro.kinect.dbe.google_example.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,30 +19,30 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
-import pro.kinect.dbe.PostDetailActivity;
+
 import pro.kinect.dbe.R;
-import pro.kinect.dbe.models.Post;
-import pro.kinect.dbe.viewholder.PostViewHolder;
+import pro.kinect.dbe.google_example.fragment.models.GoogleExample_Post;
+import pro.kinect.dbe.google_example.fragment.viewholder.GoogleExample_PostViewHolder;
 
-public abstract class PostListFragment extends Fragment {
+public abstract class GoogleExample_PostListFragment extends Fragment {
 
-    private static final String TAG = "PostListFragment";
+    private static final String TAG = "GoogleExample_PostListFragment";
 
     // [START define_database_reference]
     private DatabaseReference mDatabase;
     // [END define_database_reference]
 
-    private FirebaseRecyclerAdapter<Post, PostViewHolder> mAdapter;
+    private FirebaseRecyclerAdapter<GoogleExample_Post, GoogleExample_PostViewHolder> mAdapter;
     private RecyclerView mRecycler;
     private LinearLayoutManager mManager;
 
-    public PostListFragment() {}
+    public GoogleExample_PostListFragment() {}
 
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container,
                               Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View rootView = inflater.inflate(R.layout.fragment_all_posts, container, false);
+        View rootView = inflater.inflate(R.layout.google_example_fragment_all_posts, container, false);
 
         // [START create_database_reference]
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -66,10 +66,10 @@ public abstract class PostListFragment extends Fragment {
 
         // Set up FirebaseRecyclerAdapter with the Query
         Query postsQuery = getQuery(mDatabase);
-        mAdapter = new FirebaseRecyclerAdapter<Post, PostViewHolder>(Post.class, R.layout.item_post,
-                PostViewHolder.class, postsQuery) {
+        mAdapter = new FirebaseRecyclerAdapter<GoogleExample_Post, GoogleExample_PostViewHolder>(GoogleExample_Post.class, R.layout.google_example_item_post,
+                GoogleExample_PostViewHolder.class, postsQuery) {
             @Override
-            protected void populateViewHolder(final PostViewHolder viewHolder, final Post model, final int position) {
+            protected void populateViewHolder(final GoogleExample_PostViewHolder viewHolder, final GoogleExample_Post model, final int position) {
                 final DatabaseReference postRef = getRef(position);
 
                 // Set click listener for the whole post view
@@ -77,9 +77,9 @@ public abstract class PostListFragment extends Fragment {
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // Launch PostDetailActivity
-                        Intent intent = new Intent(getActivity(), PostDetailActivity.class);
-                        intent.putExtra(PostDetailActivity.EXTRA_POST_KEY, postKey);
+                        // Launch GoogleExample_PostDetailActivity
+                        Intent intent = new Intent(getActivity(), GoogleExample_PostDetailActivity.class);
+                        intent.putExtra(GoogleExample_PostDetailActivity.EXTRA_POST_KEY, postKey);
                         startActivity(intent);
                     }
                 });
@@ -91,7 +91,7 @@ public abstract class PostListFragment extends Fragment {
                     viewHolder.starView.setImageResource(R.drawable.ic_toggle_star_outline_24);
                 }
 
-                // Bind Post to ViewHolder, setting OnClickListener for the star button
+                // Bind GoogleExample_Post to ViewHolder, setting OnClickListener for the star button
                 viewHolder.bindToPost(model, new View.OnClickListener() {
                     @Override
                     public void onClick(View starView) {
@@ -114,7 +114,7 @@ public abstract class PostListFragment extends Fragment {
         postRef.runTransaction(new Transaction.Handler() {
             @Override
             public Transaction.Result doTransaction(MutableData mutableData) {
-                Post p = mutableData.getValue(Post.class);
+                GoogleExample_Post p = mutableData.getValue(GoogleExample_Post.class);
                 if (p == null) {
                     return Transaction.success(mutableData);
                 }

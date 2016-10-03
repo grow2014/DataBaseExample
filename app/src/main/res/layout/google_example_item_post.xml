@@ -12,7 +12,7 @@
 
         <include
             android:id="@+id/post_author_layout"
-            layout="@layout/include_post_author"
+            layout="@layout/google_example_include_post_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true" />
@@ -45,7 +45,7 @@
 
         </LinearLayout>
 
-        <include layout="@layout/include_post_text"
+        <include layout="@layout/google_example_include_post_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"

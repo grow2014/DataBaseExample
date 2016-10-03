@@ -1,4 +1,4 @@
-package pro.kinect.dbe;
+package pro.kinect.dbe.google_example.fragment;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -17,12 +17,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Map;
 
-import pro.kinect.dbe.models.Post;
-import pro.kinect.dbe.models.User;
+import pro.kinect.dbe.R;
+import pro.kinect.dbe.google_example.fragment.models.GoogleExample_Post;
+import pro.kinect.dbe.google_example.fragment.models.GoogleExample_User;
 
-public class NewPostActivity extends BaseActivity {
+public class GoogleExample_NewPostActivity extends GoogleExample_BaseActivity {
 
-    private static final String TAG = "NewPostActivity";
+    private static final String TAG = "GoogleExample_NewPostActivity";
     private static final String REQUIRED = "Required";
 
     // [START declare_database_ref]
@@ -36,7 +37,7 @@ public class NewPostActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_post);
+        setContentView(R.layout.google_example_activity_new_post);
 
         // [START initialize_database_ref]
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -80,19 +81,19 @@ public class NewPostActivity extends BaseActivity {
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        // Get user value
-                        User user = dataSnapshot.getValue(User.class);
+                        // Get googleExampleUser value
+                        GoogleExample_User googleExampleUser = dataSnapshot.getValue(GoogleExample_User.class);
 
                         // [START_EXCLUDE]
-                        if (user == null) {
-                            // User is null, error out
-                            Log.e(TAG, "User " + userId + " is unexpectedly null");
-                            Toast.makeText(NewPostActivity.this,
-                                    "Error: could not fetch user.",
+                        if (googleExampleUser == null) {
+                            // GoogleExample_User is null, error out
+                            Log.e(TAG, "GoogleExample_User " + userId + " is unexpectedly null");
+                            Toast.makeText(GoogleExample_NewPostActivity.this,
+                                    "Error: could not fetch googleExampleUser.",
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             // Write new post
-                            writeNewPost(userId, user.username, title, body);
+                            writeNewPost(userId, googleExampleUser.username, title, body);
                         }
 
                         // Finish this Activity, back to the stream
@@ -124,11 +125,11 @@ public class NewPostActivity extends BaseActivity {
 
     // [START write_fan_out]
     private void writeNewPost(String userId, String username, String title, String body) {
-        // Create new post at /user-posts/$userid/$postid and at
+        // Create new googleExamplePost at /user-posts/$userid/$postid and at
         // /posts/$postid simultaneously
         String key = mDatabase.child("posts").push().getKey();
-        Post post = new Post(userId, username, title, body);
-        Map<String, Object> postValues = post.toMap();
+        GoogleExample_Post googleExamplePost = new GoogleExample_Post(userId, username, title, body);
+        Map<String, Object> postValues = googleExamplePost.toMap();
 
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/posts/" + key, postValues);

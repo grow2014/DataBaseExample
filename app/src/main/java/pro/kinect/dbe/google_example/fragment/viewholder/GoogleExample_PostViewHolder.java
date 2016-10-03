@@ -1,4 +1,4 @@
-package pro.kinect.dbe.viewholder;
+package pro.kinect.dbe.google_example.fragment.viewholder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -6,9 +6,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import pro.kinect.dbe.R;
-import pro.kinect.dbe.models.Post;
+import pro.kinect.dbe.google_example.fragment.models.GoogleExample_Post;
 
-public class PostViewHolder extends RecyclerView.ViewHolder {
+public class GoogleExample_PostViewHolder extends RecyclerView.ViewHolder {
 
     public TextView titleView;
     public TextView authorView;
@@ -16,7 +16,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     public TextView numStarsView;
     public TextView bodyView;
 
-    public PostViewHolder(View itemView) {
+    public GoogleExample_PostViewHolder(View itemView) {
         super(itemView);
 
         titleView = (TextView) itemView.findViewById(R.id.post_title);
@@ -26,11 +26,11 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         bodyView = (TextView) itemView.findViewById(R.id.post_body);
     }
 
-    public void bindToPost(Post post, View.OnClickListener starClickListener) {
-        titleView.setText(post.title);
-        authorView.setText(post.author);
-        numStarsView.setText(String.valueOf(post.starCount));
-        bodyView.setText(post.body);
+    public void bindToPost(GoogleExample_Post googleExamplePost, View.OnClickListener starClickListener) {
+        titleView.setText(googleExamplePost.title);
+        authorView.setText(googleExamplePost.author);
+        numStarsView.setText(String.valueOf(googleExamplePost.starCount));
+        bodyView.setText(googleExamplePost.body);
 
         starView.setOnClickListener(starClickListener);
     }

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".google_example.fragment.GoogleExample_MainActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/messages_list"
@@ -13,6 +13,6 @@
         android:clipToPadding="false"
         android:padding="5dp"
         android:scrollbars="vertical"
-        tools:listitem="@layout/item_post" />
+        tools:listitem="@layout/google_example_item_post" />
 
 </FrameLayout>
