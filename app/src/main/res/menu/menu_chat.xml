@@ -4,8 +4,8 @@
     tools:context=".google_example.fragment.GoogleExample_MainActivity">
 
     <item
-        android:id="@+id/action_logout"
-        android:title="@string/menu_logout"
+        android:id="@+id/signOut"
+        android:title="@string/menu_signOut"
         android:visible="true"
         app:showAsAction="never" />
 </menu>

@@ -91,8 +91,7 @@ public class SignInController {
                         if (!task.isSuccessful()) {
                             if (activity != null) {
                                 activity.showProgress(false);
-                                activity.showMessage("Your password is wrong or " +
-                                        task.getException().getMessage());
+                                activity.showMessage(task.getException().getMessage());
                             }
                         } else {
                             //completeRegistration;

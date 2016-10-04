@@ -13,7 +13,6 @@
 
         <activity
             android:name=".main.Views.SignInActivity"
-            android:label="@string/title_activity_sign_in"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

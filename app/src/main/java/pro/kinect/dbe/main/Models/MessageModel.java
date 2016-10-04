@@ -14,9 +14,15 @@ public class MessageModel {
         // Default constructor required for calls to DataSnapshot.getValue(GoogleExample_Post.class)
     }
 
-    private String author_name;
-    private String author_uid;
-    private String message_body;
-    private long message_time;
+    public String author_name;
+    public String author_uid;
+    public String message_body;
+    public long message_time;
 
+    public MessageModel(String author_uid, String author_name, String message_body, long message_time) {
+        this.author_name = author_name;
+        this.author_uid = author_uid;
+        this.message_body = message_body;
+        this.message_time = message_time;
+    }
 }
