@@ -2,6 +2,8 @@ package pro.kinect.dbe.main.Models;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.util.Date;
+
 /**
  * Created by http://kinect.pro on 03.10.16.
  * Developer Andrew.Gahov@gmail.com
@@ -17,12 +19,12 @@ public class MessageModel {
     public String author_name;
     public String author_uid;
     public String message_body;
-    public long message_time;
+    public Long message_time;
 
-    public MessageModel(String author_uid, String author_name, String message_body, long message_time) {
+    public MessageModel(String author_uid, String author_name, String message_body, Date message_time) {
         this.author_name = author_name;
         this.author_uid = author_uid;
         this.message_body = message_body;
-        this.message_time = message_time;
+        this.message_time = message_time.getTime();
     }
 }

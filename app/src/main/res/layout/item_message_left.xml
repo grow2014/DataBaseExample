@@ -13,7 +13,6 @@
         tools:text="4 Oct.16  10:17am"
         android:textSize="10sp"
         android:layout_alignLeft="@+id/llContent"
-        android:layout_marginLeft="5dp"
         android:textColor="@color/secondary_text"
         />
 
@@ -21,7 +20,6 @@
         android:id="@+id/llContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:layout_marginRight="140dp"
         android:background="@drawable/border_white_gray"
         android:gravity="left"
@@ -31,6 +29,7 @@
         >
 
         <TextView
+            android:id="@+id/tvBody"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="df sgf sdfg dsfg dsfg fdsg fg fg fg fd gfs dfdgfs dffg sdfg g sdfg sdfg sdfg sdfg sdg "
