@@ -8,18 +8,15 @@ import com.google.firebase.database.IgnoreExtraProperties;
  */
 
 @IgnoreExtraProperties
-public class UserModel {
-    private String name;
-    private String email;
+public class MessageModel {
 
-    public UserModel() {
+    public MessageModel() {
         // Default constructor required for calls to DataSnapshot.getValue(GoogleExample_Post.class)
     }
 
-    public UserModel(String email) {
-        if (email.contains("@")) this.name = email.split("@")[0];
-        else this.name = email;
+    private String author_name;
+    private String author_uid;
+    private String message_body;
+    private long message_time;
 
-        this.email = email;
-    }
 }
