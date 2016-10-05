@@ -23,7 +23,7 @@ import pro.kinect.dbe.google_example.fragment.models.GoogleExample_User;
 
 public class GoogleExample_NewPostActivity extends GoogleExample_BaseActivity {
 
-    private static final String TAG = "GoogleExample_NewPostActivity";
+    private static final String TAG = "GoogleExample";
     private static final String REQUIRED = "Required";
 
     // [START declare_database_ref]

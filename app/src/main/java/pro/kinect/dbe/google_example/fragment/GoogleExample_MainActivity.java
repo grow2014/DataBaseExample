@@ -22,13 +22,17 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import pro.kinect.dbe.R;
 
 public class GoogleExample_MainActivity extends GoogleExample_BaseActivity {
 
-    private static final String TAG = "GoogleExample_MainActivity";
+    private static final String TAG = "GoogleExample";
 
     private FragmentPagerAdapter mPagerAdapter;
     private ViewPager mViewPager;
@@ -78,23 +82,23 @@ public class GoogleExample_MainActivity extends GoogleExample_BaseActivity {
         });
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int i = item.getItemId();
-//        if (i == R.id.action_logout) {
-//            FirebaseAuth.getInstance().signOut();
-//            startActivity(new Intent(this, GoogleExample_SignInActivity.class));
-//            finish();
-//            return true;
-//        } else {
-//            return super.onOptionsItemSelected(item);
-//        }
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_chat, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int i = item.getItemId();
+        if (i == R.id.signOut) {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(this, GoogleExample_SignInActivity.class));
+            finish();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
 
 }

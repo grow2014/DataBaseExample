@@ -25,7 +25,7 @@ import pro.kinect.dbe.google_example.fragment.viewholder.GoogleExample_PostViewH
 
 public abstract class GoogleExample_PostListFragment extends Fragment {
 
-    private static final String TAG = "GoogleExample_PostListFragment";
+    private static final String TAG = "GoogleExample";
 
     // [START define_database_reference]
     private DatabaseReference mDatabase;

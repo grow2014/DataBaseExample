@@ -30,7 +30,7 @@ import pro.kinect.dbe.google_example.fragment.models.GoogleExample_User;
 
 public class GoogleExample_PostDetailActivity extends GoogleExample_BaseActivity implements View.OnClickListener {
 
-    private static final String TAG = "GoogleExample_PostDetailActivity";
+    private static final String TAG = "GoogleExample";
 
     public static final String EXTRA_POST_KEY = "post_key";
 

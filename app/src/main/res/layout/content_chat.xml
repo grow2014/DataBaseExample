@@ -54,6 +54,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/border_white_gray"
             android:text="@string/send"
+            android:onClick="onClick"
             />
     </LinearLayout>
 
